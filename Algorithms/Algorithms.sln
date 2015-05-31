@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BST2DLL", "BST2DLL\BST2DLL.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DLL2BST", "DLL2BST\DLL2BST.vcxproj", "{E6CF491A-607A-48CA-BF6E-8D2D3C36EA6E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RMQ", "RMQ\RMQ.vcxproj", "{4DCBED61-DC64-4984-B15C-116E7DCE92F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{E6CF491A-607A-48CA-BF6E-8D2D3C36EA6E}.Debug|Win32.Build.0 = Debug|Win32
 		{E6CF491A-607A-48CA-BF6E-8D2D3C36EA6E}.Release|Win32.ActiveCfg = Release|Win32
 		{E6CF491A-607A-48CA-BF6E-8D2D3C36EA6E}.Release|Win32.Build.0 = Release|Win32
+		{4DCBED61-DC64-4984-B15C-116E7DCE92F0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4DCBED61-DC64-4984-B15C-116E7DCE92F0}.Debug|Win32.Build.0 = Debug|Win32
+		{4DCBED61-DC64-4984-B15C-116E7DCE92F0}.Release|Win32.ActiveCfg = Release|Win32
+		{4DCBED61-DC64-4984-B15C-116E7DCE92F0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
