@@ -46,7 +46,7 @@ shared_ptr<CNode<T>> arrToDLL(vector<T> v)
 template <typename T>
 void printDLL(shared_ptr<CNode<T>> rHead)
 {
-	while(rHead->right())
+	while(rHead)
 	{
 		cout << rHead->data() << " ";
 		rHead = rHead->right();
@@ -70,14 +70,16 @@ shared_ptr<CNode<T>> getMid(shared_ptr<CNode<T>> rHead, int num)
 template <typename T>
 shared_ptr<CNode<T>> dll2BST(shared_ptr<CNode<T>> rHead, int num)
 {
-	if (num == 2)
 	{
-		rHead->left() = rHead->right();
-		rHead->right() = nullptr;
-		return rHead;
+		//Only useful for linklist of size 2 or less ohterwise skipped
+		if (num == 2)
+		{
+			rHead->right()->left() = nullptr;
+			return rHead;
+		}
+		if (num < 2)
+			return rHead;
 	}
-	if (num < 2)
-		return rHead;
 
 	auto rMid = getMid(rHead,num);
 
@@ -85,29 +87,29 @@ shared_ptr<CNode<T>> dll2BST(shared_ptr<CNode<T>> rHead, int num)
 	{
 		rLeft->right() = nullptr;
 		auto lSize = num/2;
-		if(lSize <= 2)
-		{
-			rMid->left() = rHead;
-			if(lSize == 2)
-			{
-				rHead->right()->left() = nullptr;
-			}
-		}
-		else
+		//if(lSize <= 2)
+		//{
+		//	rMid->left() = rHead;
+		//	if(lSize == 2)
+		//	{
+		//		rHead->right()->left() = nullptr;
+		//	}
+		//}
+		//else               //Main Recursion
 			rMid->left() = dll2BST(rHead, lSize); 
 	}
-	if (rMid->right())
+	if (auto rRight = rMid->right())
 	{
-		rMid->right()->left() = nullptr;
+		rRight->left() = nullptr;
 		auto rSize = (num+1)/2 - 1;
-		if(rSize <= 2)
+		/*if(rSize <= 2)
 		{
 			if(rSize == 2)
 			{
 				rMid->right()->right()->left() = nullptr;
 			}
 		}
-		else
+		else*/
 			rMid->right() = dll2BST(rMid->right(), rSize);
 	}
 
@@ -165,14 +167,14 @@ void postorder(shared_ptr<CNode<T>> rHead, int indent = 0)
 }
 int main()
 {
-	int arr[] = {10, 20, 30, 40, 50, 60, 70,80, 90, 100};
+	int arr[] = {10, 20, 30, 40, 50, 60, 70,80, 90, 100, 110};
 	auto num  = sizeof(arr)/ sizeof(int);
 	vector<int> v(arr, arr+num);
 
 	auto rHead = arrToDLL(v);
 	printDLL(rHead);
 
-	auto rTreeHead = dll2BSTFast(rHead, num);
+	auto rTreeHead = dll2BST(rHead, num);
 
 	postorder(rTreeHead);
 }
