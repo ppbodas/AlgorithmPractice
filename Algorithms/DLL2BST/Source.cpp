@@ -70,16 +70,13 @@ shared_ptr<CNode<T>> getMid(shared_ptr<CNode<T>> rHead, int num)
 template <typename T>
 shared_ptr<CNode<T>> dll2BST(shared_ptr<CNode<T>> rHead, int num)
 {
+	if (num == 2)
 	{
-		//Only useful for linklist of size 2 or less ohterwise skipped
-		if (num == 2)
-		{
-			rHead->right()->left() = nullptr;
-			return rHead;
-		}
-		if (num < 2)
-			return rHead;
+		rHead->right()->left() = nullptr;
+		return rHead;
 	}
+	if (num < 2)
+		return rHead;
 
 	auto rMid = getMid(rHead,num);
 
@@ -87,30 +84,13 @@ shared_ptr<CNode<T>> dll2BST(shared_ptr<CNode<T>> rHead, int num)
 	{
 		rLeft->right() = nullptr;
 		auto lSize = num/2;
-		//if(lSize <= 2)
-		//{
-		//	rMid->left() = rHead;
-		//	if(lSize == 2)
-		//	{
-		//		rHead->right()->left() = nullptr;
-		//	}
-		//}
-		//else               //Main Recursion
-			rMid->left() = dll2BST(rHead, lSize); 
+		rMid->left() = dll2BST(rHead, lSize); 
 	}
 	if (auto rRight = rMid->right())
 	{
 		rRight->left() = nullptr;
 		auto rSize = (num+1)/2 - 1;
-		/*if(rSize <= 2)
-		{
-			if(rSize == 2)
-			{
-				rMid->right()->right()->left() = nullptr;
-			}
-		}
-		else*/
-			rMid->right() = dll2BST(rMid->right(), rSize);
+		rMid->right() = dll2BST(rMid->right(), rSize);
 	}
 
 	return rMid;
